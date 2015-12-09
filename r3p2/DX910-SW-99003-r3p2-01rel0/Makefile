@@ -15,7 +15,7 @@ else
 endif
 
 all:
-	@(cd x11/xf86-video-mali-0.0.1; ./configure --prefix=/usr; make clean; make)
+	@(cd x11/xf86-video-mali-0.0.1; ./autogen.sh; ./configure --host=arm-none-linux --enable-shared --prefix=/usr; make clean; make)
 
 clean:
 	@(cd x11/xf86-video-mali-0.0.1; make clean)
