@@ -74,7 +74,7 @@ ifeq ($(MALI_DRM),1)
 	ln -s /lib/modules/$(KVER)/mali_drm.ko out/lib/modules/mali_drm.ko
 endif
 	chmod 644 out/lib/modules/$(KVER)/*.ko
-	tar zcvf $(DRIVER_NAME)-$(DRIVER_VERSION)-$(REL).armel.tgz -C out/ .
+	tar zcvf $(DRIVER_NAME)-$(DRIVER_VERSION)-$(REL).tgz -C out/ .
 
 clean:
 ifeq ($(USING_UMP),1)
