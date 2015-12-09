@@ -19,15 +19,32 @@
 #define DRIVER_MINOR		1
 #define DRIVER_PATCHLEVEL	0
 
-#include "drm_sman.h"
+#include <linux/version.h>
+
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3,4,5)
+#include "drm/drm_sman.h"
+#else
+#include "drm/drm_mm.h"
+#endif
 
 typedef struct drm_mali_private 
 {
 	drm_local_map_t *mmio;
 	unsigned int idle_fault;
+#ifdef DRM_SMAN_H
 	struct drm_sman sman;
+#else
+	struct drm_mm vram_mm;
+	struct drm_mm mem_mm;
+	/** Mapping of userspace keys to mm objects */
+	struct idr object_idr;
+#endif
 	int vram_initialized;
 	unsigned long vram_offset;
+#ifndef DRM_SMAN_H
+	int mem_initialized;
+	unsigned long mem_offset;
+#endif
 } drm_mali_private_t;
 
 extern int mali_idle(struct drm_device *dev);

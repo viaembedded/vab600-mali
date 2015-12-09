@@ -18,6 +18,9 @@
 #include "mali_kernel_common.h"
 #include "mali_osk.h"
 
+/* Added by WonderMedia for WM3481 */
+#define POWER_LATENCY 200 /* 200 us */
+
 static u32 mali_pmu_detect_mask(u32 number_of_pp_cores, u32 number_of_l2_caches);
 
 /** @brief MALI inbuilt PMU hardware info and PMU hardware has knowledge of cores power mask
@@ -104,6 +107,9 @@ _mali_osk_errcode_t mali_pmu_powerdown_all(struct mali_pmu_core *pmu)
 		timeout--;
 	} while( timeout > 0 );
 
+	/* for WM3481 */
+	/* _mali_osk_time_ubusydelay(POWER_LATENCY); */
+
 	if( timeout == 0 )
 	{
 		return _MALI_OSK_ERR_TIMEOUT;
@@ -133,6 +139,9 @@ _mali_osk_errcode_t mali_pmu_powerup_all(struct mali_pmu_core *pmu)
 		if ( stat == 0 ) break; /* All cores we wanted are now awake */
 		timeout--;
 	} while ( timeout > 0 );
+
+	/* for WM3481 */
+	_mali_osk_time_ubusydelay(POWER_LATENCY);
 
 	if ( timeout == 0 )
 	{

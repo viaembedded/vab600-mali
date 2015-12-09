@@ -60,6 +60,10 @@ extern int mali_l2_max_reads;
 module_param(mali_l2_max_reads, int, S_IRUSR | S_IRGRP | S_IROTH);
 MODULE_PARM_DESC(mali_l2_max_reads, "Maximum reads for Mali L2 cache");
 
+extern int mali_l2_enable;
+module_param(mali_l2_enable, int, S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH); /* rw-rw-r-- */
+MODULE_PARM_DESC(mali_l2_enable, "Enable Mali L2 cache (3)");
+
 extern int mali_dedicated_mem_start;
 module_param(mali_dedicated_mem_start, int, S_IRUSR | S_IRGRP | S_IROTH);
 MODULE_PARM_DESC(mali_dedicated_mem_start, "Physical start address of dedicated Mali GPU memory.");

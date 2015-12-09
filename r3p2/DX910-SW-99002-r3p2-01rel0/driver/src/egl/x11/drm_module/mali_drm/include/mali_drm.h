@@ -40,4 +40,8 @@ typedef struct {
 	unsigned int offset, size;
 } drm_mali_fb_t;
 
+struct mali_file_private {
+	struct list_head obj_list;
+};
+
 #endif /* __MALI_DRM_H__ */

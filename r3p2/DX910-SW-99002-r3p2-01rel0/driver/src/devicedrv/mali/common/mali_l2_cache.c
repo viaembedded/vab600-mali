@@ -90,6 +90,8 @@ static u32 mali_global_num_l2_cache_cores = 0;
 
 int mali_l2_max_reads = MALI400_L2_MAX_READS_DEFAULT;
 
+int mali_l2_enable = (MALI400_L2_CACHE_ENABLE_ACCESS | MALI400_L2_CACHE_ENABLE_READ_ALLOCATE);
+
 /* Local helper functions */
 static _mali_osk_errcode_t mali_l2_cache_send_command(struct mali_l2_cache_core *cache, u32 reg, u32 val);
 
@@ -319,7 +321,10 @@ void mali_l2_cache_reset(struct mali_l2_cache_core *cache)
 	mali_l2_cache_invalidate_all(cache);
 
 	/* Enable cache */
+	/*
 	mali_hw_core_register_write(&cache->hw_core, MALI400_L2_CACHE_REGISTER_ENABLE, (u32)MALI400_L2_CACHE_ENABLE_ACCESS | (u32)MALI400_L2_CACHE_ENABLE_READ_ALLOCATE);
+	*/
+	mali_hw_core_register_write(&cache->hw_core, MALI400_L2_CACHE_REGISTER_ENABLE, (u32)mali_l2_enable);
 	mali_hw_core_register_write(&cache->hw_core, MALI400_L2_CACHE_REGISTER_MAX_READS, (u32)mali_l2_max_reads);
 
 	/* Restart any performance counters (if enabled) */

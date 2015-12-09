@@ -18,6 +18,7 @@
 #include "mali_osk.h"
 #include "mali_kernel_common.h"
 #include "linux/interrupt.h"
+#include "linux/workqueue.h"
 
 typedef struct _mali_osk_irq_t_struct
 {

@@ -628,6 +628,11 @@ static _mali_osk_errcode_t mali_parse_config_pmu(void)
 {
 	_mali_osk_resource_t resource_pmu;
 
+	/* Global variable global_gpu_base_address is not initialized yet. Fix it.
+	 * -- WonderMedia
+	 */
+	global_gpu_base_address = _mali_osk_resource_base_address();
+
 	if (_MALI_OSK_ERR_OK == _mali_osk_resource_find(global_gpu_base_address + 0x02000, &resource_pmu))
 	{
 		u32 number_of_pp_cores = 0;
