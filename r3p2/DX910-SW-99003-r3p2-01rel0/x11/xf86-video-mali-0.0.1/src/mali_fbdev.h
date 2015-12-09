@@ -27,6 +27,7 @@
 #include <linux/fb.h>
 #include "mali_def.h"
 
+#include "xorg-server.h"
 #include "xf86.h"
 #include "exa.h"
 
