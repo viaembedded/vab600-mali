@@ -314,22 +314,24 @@ static int exchange_buffers(DrawablePtr pDraw, DRI2BufferPtr front, DRI2BufferPt
 static void platform_wait_for_vsync(ScrnInfoPtr pScrn, int fb_lcd_fd)
 {
 #if PLATFORM_ORION
+/*
 	int interrupt = 1;
 	if ( ioctl( fb_lcd_fd, S3CFB_SET_VSYNC_INT, &interrupt ) < 0 )
 	{
 		xf86DrvMsg( pScrn->scrnIndex, X_WARNING, "[%s:%d] failed in S3CFB_SET_VSYNC_INT\n", __FUNCTION__, __LINE__ );
 	}
-
+*/
 	if ( ioctl( fb_lcd_fd, FBIO_WAITFORVSYNC, 0 ) < 0 )
 	{
 		xf86DrvMsg( pScrn->scrnIndex, X_WARNING, "[%s:%d] failed in FBIO_WAITFORVSYNC\n", __FUNCTION__, __LINE__ );
 	}
-
+/*
 	interrupt = 0;
 	if ( ioctl( fb_lcd_fd, S3CFB_SET_VSYNC_INT, &interrupt ) < 0 )
 	{
 		xf86DrvMsg( pScrn->scrnIndex, X_WARNING, "[%s:%d] failed in S3CFB_SET_VSYNC_INT\n", __FUNCTION__, __LINE__ );
 	}
+*/
 #endif
 }
 

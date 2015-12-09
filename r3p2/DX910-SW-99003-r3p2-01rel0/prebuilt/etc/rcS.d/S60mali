@@ -1,0 +1,8 @@
+#!/bin/sh
+# /etc/rcS.d/S60mali
+
+memsize=268435456
+insmod /lib/modules/ump.ko ump_debug_level=0 ump_backend=1 ump_memory_size=$memsize
+insmod /lib/modules/mali.ko mali_debug_level=0
+insmod /lib/modules/mali_drm.ko
+

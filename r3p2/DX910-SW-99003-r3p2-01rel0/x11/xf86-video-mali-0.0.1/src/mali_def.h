@@ -41,6 +41,7 @@
 #define ERROR_STR(str)
 #endif
 
+#define GET_UMP_SECURE_ID        _IOWR('m', 310, unsigned int)
 #define GET_UMP_SECURE_ID_BUF1   _IOWR('m', 311, unsigned int)
 #define GET_UMP_SECURE_ID_BUF2   _IOWR('m', 312, unsigned int)
 

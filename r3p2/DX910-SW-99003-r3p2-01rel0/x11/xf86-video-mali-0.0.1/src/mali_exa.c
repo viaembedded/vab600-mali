@@ -174,12 +174,18 @@ static Bool maliModifyPixmapHeader(PixmapPtr pPixmap, int width, int height, int
 		/* get the secure ID for the framebuffers */
 		if ( !offset ) 
 		{
+			/*
 			(void)ioctl( fPtr->fb_lcd_fd, GET_UMP_SECURE_ID_BUF1, &ump_id );
+			*/
+			(void)ioctl( fPtr->fb_lcd_fd, GET_UMP_SECURE_ID, &ump_id );
 			ErrorF("GET_UMP_SECURE_ID_BUF1 returned 0x%x offset: %i virt address: %p fb_virt: %p\n", ump_id, offset, pPixData, fPtr->fbmem);
 		}
 		else 
 		{
+			/*
 			(void)ioctl( fPtr->fb_lcd_fd, GET_UMP_SECURE_ID_BUF2, &ump_id );
+			*/
+			(void)ioctl( fPtr->fb_lcd_fd, GET_UMP_SECURE_ID, &ump_id );
 			ErrorF("GET_UMP_SECURE_ID_BUF2 returned 0x%x offset: %i virt address: %p fb_virt: %p\n", ump_id, offset, pPixData, fPtr->fbmem);
 		}
 
